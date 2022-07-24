@@ -14,12 +14,12 @@ public class Main {
 
         String sign = getExpressionSign(input);
 
-        String[] numbers = input.split("[-+*/]");
-        String numberStr1 = numbers[0];
-        String numberStr2 = numbers[1];
-        if (numbers.length > 2) {
+        String[] numbers = input.split("[-+*/]",2);
+        if (numbers.length != 2) {
             throw new Exception("The format of the mathematical operation does not satisfy the task");
         }
+        String numberStr1 = numbers[0];
+        String numberStr2 = numbers[1];
 
         int number1, number2;
         boolean bothArabic = isArabic(numberStr1) && isArabic(numberStr2);
@@ -29,7 +29,7 @@ public class Main {
         } else if (bothArabic) {
             number1 = arabicToInt(numberStr1);
             number2 = arabicToInt(numberStr2);
-        } else throw new Exception("Different number systems are used simultaneously");
+        } else throw new Exception("Numbers not valid or different number systems are used simultaneously");
 
         if (number1 > 10 || number2 > 10) {
             throw new Exception("The entered numbers are greater than 10");
@@ -90,23 +90,6 @@ public class Main {
         return parseInt(x);
     }
 
-    public static int add(int x, int y) {
-        return x + y;
-    }
-
-    public static int sub(int x, int y) {
-        return x - y;
-    }
-
-    public static int mul(int x, int y) {
-        return x * y;
-    }
-
-    public static int div(int x, int y) {
-        return x / y;
-    }
-
-
     public static String arabicToRoman(int x) throws Exception {
         if (x <= 0) {
             throw new Exception("The Roman number cannot be less than 1");
@@ -127,4 +110,21 @@ public class Main {
         }
         return result;
     }
+
+    public static int add(int x, int y) {
+        return x + y;
+    }
+
+    public static int sub(int x, int y) {
+        return x - y;
+    }
+
+    public static int mul(int x, int y) {
+        return x * y;
+    }
+
+    public static int div(int x, int y) {
+        return x / y;
+    }
+
 }
